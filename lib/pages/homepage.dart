@@ -4,11 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Bloc/counter_event.dart';
 import '../Bloc/counter_state.dart';
-import '../Bloc/counterbloc.dart';
+import '../Bloc/counter_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -33,28 +32,24 @@ class _HomePageState extends State<HomePage> {
           body:  Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-
-              decoration:  BoxDecoration(
+                decoration:  BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.black12
-
-
               ),
-
               child: Column(
-               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                children: [
                  BlocBuilder<CounterBloc, CounterState>(
                    builder: (context, state) {
                      if (state is CounterResult) {
                        return Text("Result: ${state.sum}",
-                           style: TextStyle(fontSize: 20));
+                           style: const TextStyle(fontSize: 20));
                      } else if (state is CounterError) {
                        return Text(state.message,
-                           style: TextStyle(fontSize: 16, color: Colors.red));
+                           style: const TextStyle(fontSize: 16, color: Colors.red));
                      }
-                     return Text("Enter numbers to calculate.");
+                     return const Text("Enter numbers to calculate.");
                    },
                   ),
                   Padding(
@@ -91,6 +86,23 @@ class _HomePageState extends State<HomePage> {
                          bloc.add(CalculateSum(_controller.text));
                        },
                        child: const Text("Calculate"),
+                     ),
+                     const SizedBox(width: 20,),
+                     ElevatedButton(
+                       style: ElevatedButton.styleFrom(
+                         backgroundColor: Colors.red,
+                         foregroundColor: Colors.white,
+                         shadowColor: Colors.black,
+                         elevation: 5,
+                         shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.circular(12),
+                         ),
+                       ),
+                       onPressed: () {
+                        _controller.clear();
+                        bloc.add(CalculateSum(_controller.text));
+                       },
+                       child: const Text("Clear"),
                      )
                    ],
                  )
@@ -100,6 +112,5 @@ class _HomePageState extends State<HomePage> {
           ),
      )
     );
-
   }
 }

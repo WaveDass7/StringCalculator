@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stringcalculator/Bloc/Calculate_bloc.dart';
+import 'package:stringcalculator/Bloc/calculate_logic.dart';
 
 void main() {
-  group('CalculatE', (){
+  group('Calculate', (){
     final repo = CalculateLogic();
 
-    test('1', () {
-      expect(repo.add("1,2,3,4"), 1);
+    test('test with commas as delimeter', () {
+      expect(repo.add("1,2,3,4"), 10);
     });
   });
 

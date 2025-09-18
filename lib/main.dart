@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stringcalculator/Pages/HomePage.dart';
+import 'package:stringcalculator/Pages/homepage.dart';
 
-import 'Bloc/Calculate_bloc.dart';
-import 'Bloc/counterbloc.dart';
+import 'Bloc/calculate_logic.dart';
+import 'Bloc/counter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
