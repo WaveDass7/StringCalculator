@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stringcalculator/Pages/HomePage.dart';
+
+import 'Bloc/Calculate_bloc.dart';
+import 'Bloc/counterbloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,9 +12,12 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final CalculateLogic repository = CalculateLogic();
+
     return MaterialApp(
       title: 'String Calculator',
       debugShowCheckedModeBanner: false,
@@ -18,7 +25,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: BlocProvider(
+          create: (_) => CounterBloc(repository),
+          child: const HomePage()),
     );
   }
 }
