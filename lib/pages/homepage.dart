@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../Bloc/counter_event.dart';
 import '../Bloc/counter_state.dart';
 import '../Bloc/counter_bloc.dart';
@@ -19,14 +17,14 @@ class _HomePageState extends State<HomePage> {
     final bloc = BlocProvider.of<CounterBloc>(context);
     return SafeArea(
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.black,
           appBar: AppBar(
             title: const Text('String Calculator',
             style: TextStyle(
-              color: Colors.black54,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
             ),),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.black,
             centerTitle: false,
           ) ,
           body:  Padding(
@@ -34,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
                 decoration:  BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                color: Colors.black12
+                color: Colors.white12
               ),
               child: Column(
                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -43,8 +41,9 @@ class _HomePageState extends State<HomePage> {
                  BlocBuilder<CounterBloc, CounterState>(
                    builder: (context, state) {
                      if (state is CounterResult) {
-                       return Text("Result: ${state.sum}",
-                           style: const TextStyle(fontSize: 20));
+                       return Text("${state.sum}",
+                           style: const TextStyle(fontSize: 25,
+                           color: Colors.white));
                      } else if (state is CounterError) {
                        return Text(state.message,
                            style: const TextStyle(fontSize: 16, color: Colors.red));
@@ -53,18 +52,21 @@ class _HomePageState extends State<HomePage> {
                    },
                   ),
                   Padding(
-                   padding: const EdgeInsets.all(8.0),
+                   padding: const EdgeInsets.all(15.0),
                    child: TextField(
                      controller: _controller,
                      style: const TextStyle(
-                      color: Colors.black54,
+                      color: Colors.white,
                      ),
                      decoration: const InputDecoration(
-                       labelText: "Enter numbers string",
+                       labelText: "Enter any string with number",
                        labelStyle: TextStyle(
-                         color: Colors.black54,
+                         color: Colors.white,
                        ),
-                       hintText: "e.g. 1,2,3 or //;\n1;2",
+                       hintText: "e.g. 1,2,3 ",
+                       hintStyle: TextStyle(
+                         color: Colors.white54
+                       )
                      ),
                    ),
                  ),

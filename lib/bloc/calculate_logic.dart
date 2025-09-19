@@ -2,25 +2,29 @@
 class CalculateLogic {
   int add(String numbers) {
 
+    //I am matching negatives and positive values here
     final regex = RegExp(r'-?\d+');
     final matches = regex.allMatches(numbers);
 
-    int sum = 0;
+    int total = 0;
     List<int> negatives = [];
 
+    //Looping all values and adding up also looking out for negative values
     for (var match in matches) {
       int number = int.parse(match.group(0)!);
       if (number < 0) {
         negatives.add(number);
       }
-      sum += number;
+      total += number;
     }
 
+    //if any negative values returning Error
     if (negatives.isNotEmpty) {
       return 777;
     }
 
-    return sum;
+    //if no negative values returning the total
+    return total;
   }
 }
 
