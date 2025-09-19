@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                  BlocBuilder<CounterBloc, CounterState>(
                    builder: (context, state) {
                      if (state is CounterResult) {
-                       return Text("${state.sum}",
+                       return Text("Total: ${state.sum}",
                            style: const TextStyle(fontSize: 25,
                            color: Colors.white));
                      } else if (state is CounterError) {

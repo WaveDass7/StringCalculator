@@ -20,7 +20,7 @@ class CalculateLogic {
 
     //if any negative values returning Error
     if (negatives.isNotEmpty) {
-      return 777;
+      throw Exception("No negative numbers allowed: ${negatives.join(', ')}");
     }
 
     //if no negative values returning the total
